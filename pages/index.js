@@ -17,6 +17,7 @@ export default function HomePage(props) {
 
 export async function getStaticProps() {
   return {
+    revalidate: 10,
     props: {
       products: [
         {
