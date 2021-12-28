@@ -10,6 +10,8 @@ This is a tutorial project to learn Next JS via online course. This document wil
 
 `getStaticProps` = Pre-generate a page with data prepared on the server during build time.
 
-- props = Any data to prepare.
-- revalidate = Duration to re-generate build files in seconds. In case of the web app need to receipt new data from database.
+- `props` = Any data to prepare.
+- `revalidate` = Duration to re-generate build files in seconds. In case of the web app need to receipt new data from database.
   For example, revalidate = 10. If the page refreshes in 10 seconds the web will not re-generate the build files.
+- `notFound` = Render 404 page when a condition is true.
+- `redirect` = Navigate a route when a condition is true. For example, `{ redirect: { destination: '/no-data' } }`
