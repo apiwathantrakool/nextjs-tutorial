@@ -3,7 +3,7 @@ export default function EventDetailPage(props) {
   console.log('!!!!params: ', params);
   return (
     <div>
-      <h1>EventDetailPage</h1>
+      <h1>EventDetailPage {params.eventId}</h1>
     </div>
   );
 }
@@ -31,6 +31,6 @@ export async function getStaticPaths() {
         },
       },
     ],
-    fallback: false,
+    fallback: 'blocking',
   };
 }
