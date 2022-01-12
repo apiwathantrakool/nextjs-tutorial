@@ -32,7 +32,7 @@ This is a tutorial project to learn Next JS via online course. This document wil
 
 # Server-side rendering (Preparing on run time)
 
-`getServerSideProps` = Dynamic page with data fetching on the server during <b>run time</b>. Don't need to prepare paths for `getStaticPaths`.
+`getServerSideProps` = Dynamic page with data fetching on the server during <b>run time</b>.
 
 <b>Return props:</b>
 
@@ -41,9 +41,11 @@ This is a tutorial project to learn Next JS via online course. This document wil
 
 ```
 // This gets called on every request
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  // Don't need to prepare paths for `getStaticPaths`.
+  const { params } = context;
   // Fetch data from external API
-  const res = await fetch(`https://.../data`)
+  const res = await fetch(`https://.../data/${params.eventId}`)
   const data = await res.json()
 
   // Pass data to the page via props
