@@ -6,9 +6,9 @@ This is a tutorial project to learn Next JS via online course. This document wil
 - next build = Create the build files and HTML file prepared for running on client.
 - next start = Run the build files to test. Before deploy the web app.
 
-# Static generation
+# Static generation (Preparing on build time)
 
-`getStaticProps` = Pre-generate a page with data prepared on the server during build time.
+`getStaticProps` = Pre-generate a page with data prepared on the server during <b>build time</b>.
 
 <b>Return props:</b>
 
@@ -29,3 +29,24 @@ This is a tutorial project to learn Next JS via online course. This document wil
   - `false` = Good for static path. Any paths not returned by `getStaticPaths` > `paths` will result in a 404 page.
   - `true` = Good for dynamic path. Any paths from URL can be rendered to HTML at build time by `getStaticProps`. But need to condition the path exist before rendering.
   - `blocking` = Good and Suitable for dynamic path. Similar to `true` but it will wait until a path successfully loaded. Because when use `true` the page will finish loading before the path loading.
+
+# Server-side rendering (Preparing on run time)
+
+`getServerSideProps` = Dynamic page with data fetching on the server during <b>run time</b>. Don't need to prepare paths for `getStaticPaths`.
+
+<b>Return props:</b>
+
+- `props` = Any data to prepare.
+  For example,
+
+```
+// This gets called on every request
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://.../data`)
+  const data = await res.json()
+
+  // Pass data to the page via props
+  return { props: { data } }
+}
+```
