@@ -52,3 +52,7 @@ export async function getServerSideProps(context) {
   return { props: { data } }
 }
 ```
+
+# Client-side data fetching
+
+`useSWR` = Similar to `fetch()` but executes when a component is loaded not rendered(`useEffect`).
