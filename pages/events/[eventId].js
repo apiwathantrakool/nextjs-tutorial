@@ -1,36 +1,39 @@
+import { getAllEvents, getEventById } from '../../utils/api-utils';
+import EventItem from '../../components/events/event-item';
+
 export default function EventDetailPage(props) {
-  const { params } = props;
-  console.log('!!!!params: ', params);
+  const { event, eventId } = props;
   return (
     <div>
-      <h1>EventDetailPage {params.eventId}</h1>
+      <h1>EventDetailPage {eventId}</h1>
+      <EventItem key={eventId} item={event} />
     </div>
   );
 }
 
 export async function getStaticProps(context) {
   const { params } = context;
+  const eventId = params.eventId;
+  const event = await getEventById(params.eventId);
   return {
     props: {
-      params,
+      event,
+      eventId,
     },
   };
 }
 
 export async function getStaticPaths() {
+  const events = await getAllEvents();
+  const paths = events.map((obj) => {
+    return {
+      params: {
+        eventId: obj.id,
+      },
+    };
+  });
   return {
-    paths: [
-      {
-        params: {
-          eventId: '01',
-        },
-      },
-      {
-        params: {
-          eventId: '02',
-        },
-      },
-    ],
-    fallback: 'blocking',
+    paths: paths,
+    fallback: false,
   };
 }
