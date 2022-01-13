@@ -1,30 +1,20 @@
-import { getFeaturedEvents } from '../data/dummy-data';
+import { getFeaturedEvents } from '../utils/api-utils';
 import EvenList from '../components/events/event-list';
 
 export default function HomePage(props) {
-  const { products } = props;
-  const featuredEvents = getFeaturedEvents();
+  const { events } = props;
   return (
     <div>
-      <h1>Home page</h1>
-      <div>Data from hardcode</div>
-      <EvenList itemList={featuredEvents} />
-      <div>Data from getStaticProps</div>
-      <EvenList itemList={products} />
+      <EvenList itemList={events} />
     </div>
   );
 }
 
 export async function getStaticProps() {
+  const featuredEvents = await getFeaturedEvents();
   return {
-    revalidate: 10,
     props: {
-      products: [
-        {
-          id: 'e1',
-          title: 'Test getStaticProps',
-        },
-      ],
+      events: featuredEvents,
     },
   };
 }
