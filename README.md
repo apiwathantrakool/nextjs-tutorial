@@ -55,5 +55,5 @@ export async function getServerSideProps(context) {
 
 # Client-side data fetching
 
-`useSWR` = Similar to `fetch()` but executes when a component is loaded not rendered(`useEffect`).
+`useSWR` = Similar to `fetch()` but executes when a component is loaded not rendered(`useEffect`). This is similar as Firebase realtime fetching which it will fetch a new data(not the whole just only new changes) when the data was changed from a listening api.
 SWR = Stale While Revalidate, it will read the data from cache first before fetch the API. After send the API request, merge the response with the cache data. (ref: https://swr.vercel.app/)
