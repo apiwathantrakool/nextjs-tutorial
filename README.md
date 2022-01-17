@@ -60,7 +60,7 @@ SWR = Stale While Revalidate, it will read the data from cache first before fetc
 
 # Optimizing
 
-`Head` = Custom title bar name, icon, description, or any meta tags.
+`Head` = Custom title bar name, icon, description, or any meta tags. Note that if the web contains multiple nested title then the last one will be used.
 For example,
 
 ```
@@ -76,3 +76,6 @@ export default function HomePage() {
   );
 }
 ```
+
+`_app.js` = The root component inside the body section of HTML document.
+`_document.js` = Similar to custom default index.html which allows to add HTML content outside the app component.
