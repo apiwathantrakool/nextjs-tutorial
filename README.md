@@ -57,3 +57,22 @@ export async function getServerSideProps(context) {
 
 `useSWR` = Similar to `fetch()` but executes when a component is loaded not rendered(`useEffect`). This is similar as Firebase realtime fetching which it will fetch a new data(not the whole just only new changes) when the data was changed from a listening api.
 SWR = Stale While Revalidate, it will read the data from cache first before fetch the API. After send the API request, merge the response with the cache data. (ref: https://swr.vercel.app/)
+
+# Optimizing
+
+`Head` = Custom title bar name, icon, description, or any meta tags.
+For example,
+
+```
+import Head from 'next/head';
+export default function HomePage() {
+  return (
+    <div>
+      <Head>
+        <title>Home page</title>
+        <meta name='description' content='Home page description' />
+      </Head>
+     </div>
+  );
+}
+```
