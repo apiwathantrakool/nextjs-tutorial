@@ -79,3 +79,5 @@ export default function HomePage() {
 
 `_app.js` = The root component inside the body section of HTML document.
 `_document.js` = Similar to custom default index.html which allows to add HTML content outside the app component.
+
+`Image` = https://nextjs.org/docs/api-reference/next/image
