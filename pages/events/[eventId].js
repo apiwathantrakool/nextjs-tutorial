@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { getAllEvents, getEventById } from '../../utils/api-utils';
 import EventItem from '../../components/events/event-item';
 
@@ -5,6 +6,10 @@ export default function EventDetailPage(props) {
   const { event, eventId } = props;
   return (
     <div>
+      <Head>
+        <title>Event page {eventId}</title>
+        <meta name='description' content={`Event page ${eventId}`} />
+      </Head>
       <h1>EventDetailPage {eventId}</h1>
       <EventItem key={eventId} item={event} />
     </div>
