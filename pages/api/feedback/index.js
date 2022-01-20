@@ -14,9 +14,9 @@ export default async function handler(req, res) {
       'mongodb+srv://nekkyapiwat:nktraining2022@training.xed61.mongodb.net/nextJS?retryWrites=true&w=majority'
     );
     const db = client.db();
-    await db.collection('feedbacks').insertOne(data);
+    const result = await db.collection('feedbacks').insertOne(data);
     client.close();
 
-    res.status(201).json({ message: 'Success!', data: data });
+    res.status(201).json({ message: 'Success!', data: result });
   }
 }
