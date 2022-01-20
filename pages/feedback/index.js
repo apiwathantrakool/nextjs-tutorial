@@ -4,7 +4,15 @@ export default function Feedback() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const onSubmit = () => {
-    console.log({ name, message });
+    fetch('/api/feedback', {
+      method: 'POST',
+      body: JSON.stringify({ name, message }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   };
   return (
     <div>
