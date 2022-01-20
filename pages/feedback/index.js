@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { fetchFeedbacks } from '../../utils/api-utils';
 
-export default function Feedback() {
+export default function Feedback(props) {
+  const { feedbacks = [] } = props;
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const onSubmit = () => {
@@ -38,6 +40,32 @@ export default function Feedback() {
         <br />
         <button onClick={onSubmit}>Submit</button>
       </div>
+
+      <div>
+        <h2>Feedback list</h2>
+
+        {feedbacks.map((obj) => {
+          return (
+            <div key={obj._id}>
+              <br />
+              <div>{obj._id}</div>
+              <div>{obj.id}</div>
+              <div>{obj.name}</div>
+              <div>{obj.message}</div>
+              <br />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const feedbacks = await fetchFeedbacks();
+  return {
+    props: {
+      feedbacks: feedbacks,
+    },
+  };
 }
