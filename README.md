@@ -85,4 +85,7 @@ export default function HomePage() {
 
 #API Routes
 https://nextjs.org/docs/api-routes/introduction
-![alt text](https://github.com/apiwathantrakool/nextjs-tutorial/blob/main/readmeAssets/api-routes-details.png?raw=true)
+
+<p align="center">
+  <img src="https://github.com/apiwathantrakool/nextjs-tutorial/blob/main/readmeAssets/api-routes-details.png?raw=true" width="350" title="hover text">
+ </p>
