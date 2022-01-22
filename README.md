@@ -83,7 +83,8 @@ export default function HomePage() {
 
 `Image` = https://nextjs.org/docs/api-reference/next/image
 
-#API Routes
+# API Routes
+
 https://nextjs.org/docs/api-routes/introduction
 
 <p align="center">
