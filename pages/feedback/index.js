@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { fetchFeedbacks } from '../../utils/api-utils';
+import NotificationContext from '../../store/notification-context';
+import { Notification } from '../../components/notification/notification';
 
 export default function Feedback(props) {
   const { feedbacks = [] } = props;
+
+  const { notification, showNotification, hideNotification } =
+    useContext(NotificationContext);
+
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+
   const onSubmit = () => {
     fetch('/api/feedback', {
       method: 'POST',
@@ -57,6 +64,14 @@ export default function Feedback(props) {
           );
         })}
       </div>
+
+      {notification && (
+        <Notification
+          title={notification?.title}
+          message={notification?.message}
+          status={notification?.status}
+        />
+      )}
     </div>
   );
 }
