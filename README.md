@@ -85,3 +85,4 @@ export default function HomePage() {
 
 #API Routes
 https://nextjs.org/docs/api-routes/introduction
+![alt text](https://github.com/apiwathantrakool/nextjs-tutorial/blob/main/readmeAssets/api-routes-details.png?raw=true)
