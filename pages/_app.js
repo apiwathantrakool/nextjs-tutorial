@@ -4,7 +4,7 @@ import { NotificationContextProvider } from '../store/notification-context';
 function MyApp({ Component, pageProps }) {
   return (
     <NotificationContextProvider>
-      <Component {...pageProps} />{' '}
+      <Component {...pageProps} />
     </NotificationContextProvider>
   );
 }
