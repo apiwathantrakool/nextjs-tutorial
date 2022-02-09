@@ -2,7 +2,7 @@ import useSWR from 'swr';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import EvenList from '../../components/events/event-list';
-import { getAllEvents } from '../../utils/api-utils';
+import { getAllEvents } from '../../services/firebase-db';
 
 export default function AllEventsPage() {
   const [loadedEvents, setLoadedEvents] = useState();

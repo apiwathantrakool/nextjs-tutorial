@@ -6,8 +6,8 @@ import { Notification } from '../../components/notification/notification';
 export default function Feedback(props) {
   const { feedbacks = [] } = props;
 
-  const { notification, showNotification, hideNotification } =
-    useContext(NotificationContext);
+  // const { notification, showNotification, hideNotification } =
+  //   useContext(NotificationContext);
 
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
@@ -53,9 +53,8 @@ export default function Feedback(props) {
 
         {feedbacks.map((obj) => {
           return (
-            <div key={obj._id}>
+            <div key={obj.id}>
               <br />
-              <div>{obj._id}</div>
               <div>{obj.id}</div>
               <div>{obj.name}</div>
               <div>{obj.message}</div>
@@ -65,13 +64,13 @@ export default function Feedback(props) {
         })}
       </div>
 
-      {notification && (
+      {/* {notification && (
         <Notification
           title={notification?.title}
           message={notification?.message}
           status={notification?.status}
         />
-      )}
+      )} */}
     </div>
   );
 }

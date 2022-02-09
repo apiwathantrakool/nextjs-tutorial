@@ -1,11 +1,9 @@
 import {
-  connectDatabase,
-  insertDocument,
-  getAllDocuments,
-} from '../../../utils/db-utils';
+  getAllFeedbacks,
+  addNewFeedbacks,
+} from '../../../services/firebase-db';
 
 export default async function handler(req, res) {
-  const client = await connectDatabase();
   if (req.method === 'POST') {
     const { name, message } = req.body;
     const id = new Date().toISOString();
@@ -14,11 +12,10 @@ export default async function handler(req, res) {
       name,
       message,
     };
-    const result = await insertDocument(client, 'feedbacks', data);
+    const result = await addNewFeedbacks(data);
     res.status(201).json({ message: 'Success!', data: result });
   } else if (req.method === 'GET') {
-    const result = await getAllDocuments(client, 'feedbacks');
+    const result = await getAllFeedbacks();
     res.status(200).json({ message: 'Success!', data: result });
   }
-  client.close();
 }

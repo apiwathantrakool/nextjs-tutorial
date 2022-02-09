@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { getAllEvents, getEventById } from '../../utils/api-utils';
+import { getAllEvents, getEventById } from '../../services/firebase-db';
 import EventItem from '../../components/events/event-item';
 
 export default function EventDetailPage(props) {
