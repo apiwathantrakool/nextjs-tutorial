@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { fetchFeedbacks } from '../../utils/api-utils';
+import { getFeedbacksAPI, addNewFeedbackAPI } from '../../utils/api-utils';
 import NotificationContext from '../../store/notification-context';
 import { Notification } from '../../components/notification/notification';
 
@@ -13,15 +13,7 @@ export default function Feedback(props) {
   const [message, setMessage] = useState('');
 
   const onSubmit = () => {
-    fetch('/api/feedback', {
-      method: 'POST',
-      body: JSON.stringify({ name, message }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+    addNewFeedbackAPI(name, message);
   };
   return (
     <div>
@@ -76,7 +68,7 @@ export default function Feedback(props) {
 }
 
 export async function getStaticProps() {
-  const feedbacks = await fetchFeedbacks();
+  const feedbacks = await getFeedbacksAPI();
   return {
     props: {
       feedbacks: feedbacks,
