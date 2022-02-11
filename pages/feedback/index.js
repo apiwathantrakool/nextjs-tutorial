@@ -1,23 +1,38 @@
 import { useState, useContext } from 'react';
 import { getFeedbacksAPI, addNewFeedbackAPI } from '../../utils/api-utils';
 import NotificationContext from '../../store/notification-context';
-import Notification from '../../components/notification/notification';
+import Notification, {
+  STATUS,
+} from '../../components/notification/notification';
+import { API_STATUS } from '../../constants/api-constants';
 
 export default function Feedback(props) {
   const { feedbacks = [] } = props;
-
   const { notification, showNotification, hideNotification } =
     useContext(NotificationContext);
 
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
 
+  const getStatus = (apiStatus) => {
+    const status = {
+      [API_STATUS._201]: STATUS.SUCCESS,
+      [API_STATUS._200]: STATUS.SUCCESS,
+    };
+    return status[apiStatus] || STATUS.ERROR;
+  };
+
   const onSubmit = async () => {
+    showNotification({
+      title: name,
+      message,
+      status: STATUS.PENDING,
+    });
     const response = await addNewFeedbackAPI(name, message);
     showNotification({
       title: name,
       message,
-      status: response?.status,
+      status: getStatus(response?.status),
     });
   };
   return (
