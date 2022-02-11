@@ -13,10 +13,16 @@ export default async function handler(req, res) {
       name,
       message,
     };
-    const result = await addNewFeedbacks(data);
-    res
-      .status(API_STATUS._201)
-      .json({ message: 'Success!', data: result, status: API_STATUS._201 });
+    try {
+      const result = await addNewFeedbacks(data);
+      res
+        .status(API_STATUS._201)
+        .json({ message: 'Success!', data: result, status: API_STATUS._201 });
+    } catch (error) {
+      res
+        .status(API_STATUS._500)
+        .json({ message: error, status: API_STATUS._500 });
+    }
   } else if (req.method === 'GET') {
     const result = await getAllFeedbacks();
     res
