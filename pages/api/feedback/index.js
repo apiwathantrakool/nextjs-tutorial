@@ -2,6 +2,7 @@ import {
   getAllFeedbacks,
   addNewFeedbacks,
 } from '../../../services/firebase-db';
+import { API_STATUS } from '../../../constants/api-constants';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -13,9 +14,13 @@ export default async function handler(req, res) {
       message,
     };
     const result = await addNewFeedbacks(data);
-    res.status(201).json({ message: 'Success!', data: result });
+    res
+      .status(API_STATUS._201)
+      .json({ message: 'Success!', data: result, status: API_STATUS._201 });
   } else if (req.method === 'GET') {
     const result = await getAllFeedbacks();
-    res.status(200).json({ message: 'Success!', data: result });
+    res
+      .status(API_STATUS._200)
+      .json({ message: 'Success!', data: result, status: API_STATUS._200 });
   }
 }

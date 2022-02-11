@@ -12,9 +12,13 @@ export default function Feedback(props) {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
 
-  const onSubmit = () => {
-    addNewFeedbackAPI(name, message);
-    showNotification({ title: name, message, status: 'success' });
+  const onSubmit = async () => {
+    const response = await addNewFeedbackAPI(name, message);
+    showNotification({
+      title: name,
+      message,
+      status: response?.status,
+    });
   };
   return (
     <div>
