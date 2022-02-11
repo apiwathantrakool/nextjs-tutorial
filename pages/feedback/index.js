@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { getFeedbacksAPI, addNewFeedbackAPI } from '../../utils/api-utils';
 import NotificationContext from '../../store/notification-context';
 import Notification, {
@@ -35,6 +35,17 @@ export default function Feedback(props) {
       status: getStatus(response?.status),
     });
   };
+
+  useEffect(() => {
+    const hideNotificationListener = setTimeout(() => {
+      hideNotification();
+    }, 3000);
+    return () => {
+      hideNotificationListener;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [notification]);
+
   return (
     <div>
       <h1>Feedback page</h1>
