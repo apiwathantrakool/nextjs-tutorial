@@ -22,6 +22,11 @@ export default function EventItem(props) {
         height={100}
         layout={'fixed'}
         objectFit={'cover'}
+        priority={true}
+        placeholder={'blur'}
+        blurDataURL={
+          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xg8AAnMBeJQW2OIAAAAASUVORK5CYII='
+        }
       />
     </div>
   );
