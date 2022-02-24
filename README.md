@@ -109,3 +109,13 @@ https://nextjs.org/docs/api-routes/introduction
 <p align="center">
   <img src="https://github.com/apiwathantrakool/nextjs-tutorial/blob/main/readmeAssets/api-routes-details.png?raw=true" width="350" title="hover text">
  </p>
+
+# Deploying NextJS app
+
+Docs = https://nextjs.org/docs/api-reference/next.config.js/introduction
+
+In package.json file
+
+```
+    "export": "next export"
+```
