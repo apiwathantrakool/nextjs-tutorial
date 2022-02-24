@@ -1,7 +1,5 @@
-const EVENTS_URL =
-  'https://training-e3776-default-rtdb.asia-southeast1.firebasedatabase.app/nextJS/events.json';
-const FEEDBACKS_URL =
-  'https://training-e3776-default-rtdb.asia-southeast1.firebasedatabase.app/nextJS/feedback.json';
+const EVENTS_URL = `${process.env.firebase_base_url}/events.json`;
+const FEEDBACKS_URL = `${process.env.firebase_base_url}/feedback.json`;
 
 export async function getAllEvents() {
   const response = await fetch(EVENTS_URL);
