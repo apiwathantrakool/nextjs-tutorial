@@ -98,7 +98,7 @@ export default function Feedback(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const feedbacks = await getFeedbacksAPI();
   return {
     props: {
