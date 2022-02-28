@@ -4,7 +4,8 @@ This is a tutorial project to learn Next JS via online course. This document wil
 
 - next dev = Run the web app in debug mode.
 - next build = Create the build files and HTML file prepared for running on client.
-- next start = Run the build files to test. Before deploy the web app.
+- next start = Run the build files to test. Before deploy the web app. The hosting sever need to support NodeJS rendering such as Vercel(https://vercel.com/), any NodeJS server.
+- next export = Create static files export to any hosting. Need to run "next build" first. But cannot use SSR and optimization.
 
 # Static generation (Preparing on build time)
 
