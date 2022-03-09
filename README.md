@@ -120,3 +120,7 @@ In package.json file
 ```
     "export": "next export"
 ```
+
+# Authentication
+
+JWT (JSON Web Token) = Header + Body + Secret Key(can be expired) = Encrypt into one long string(such as base64).
