@@ -1,6 +1,6 @@
 import { getAllEvents } from '../services/firebase-db';
 
-const BASE_URL = 'http://localhost:3000';
+const getBaseURL = () => window.location.origin;
 
 // Events
 export async function getFeaturedEvents() {
@@ -15,6 +15,7 @@ export async function getEventById(id) {
 
 // Feedbacks
 export async function getFeedbacksAPI() {
+  const BASE_URL = getBaseURL();
   const response = await fetch(`${BASE_URL}/api/feedback`, {
     method: 'GET',
     headers: {
@@ -26,9 +27,22 @@ export async function getFeedbacksAPI() {
 }
 
 export async function addNewFeedbackAPI(name, message) {
+  const BASE_URL = getBaseURL();
   const response = fetch(`${BASE_URL}/api/feedback`, {
     method: 'POST',
     body: JSON.stringify({ name, message }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((response) => response.json());
+  return response;
+}
+
+export async function signupAPI(email, password) {
+  const BASE_URL = getBaseURL();
+  const response = fetch(`${BASE_URL}/api/auth/signup`, {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
     headers: {
       'Content-Type': 'application/json',
     },

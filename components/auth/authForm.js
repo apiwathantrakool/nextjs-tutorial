@@ -1,14 +1,17 @@
 import { useState, useRef } from 'react';
+import { signupAPI } from '../../utils/api-utils';
 
 export const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault();
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-    console.log('!!!submitHandler: ', { enteredEmail, enteredPassword });
+    await signupAPI(enteredEmail, enteredPassword).then((res) =>
+      console.log('!!!!res:', res)
+    );
   }
   return (
     <form onSubmit={submitHandler}>
