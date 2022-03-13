@@ -1,18 +1,36 @@
 import { useState, useRef } from 'react';
 import { signupAPI } from '../../utils/api-utils';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 export const AuthForm = () => {
+  const [isLogin, setIsLogin] = useState(false);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const router = useRouter();
 
   async function submitHandler(event) {
     event.preventDefault();
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-    await signupAPI(enteredEmail, enteredPassword).then((res) =>
-      console.log('!!!!res:', res)
-    );
+    if (isLogin) {
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+      console.log('!!!!result: ', result);
+      if (!result.error) {
+        // set some auth state
+        router.replace('/feedback');
+      }
+    } else {
+      await signupAPI(enteredEmail, enteredPassword).then((res) =>
+        console.log('!!!!res:', res)
+      );
+    }
   }
+
   return (
     <form onSubmit={submitHandler}>
       <div>
@@ -24,7 +42,8 @@ export const AuthForm = () => {
         <input type='password' id='password' required ref={passwordInputRef} />
       </div>
       <div>
-        <button>Login</button>
+        <button>{isLogin ? 'Sign in' : 'Sign up'}</button>
+        <button onClick={() => setIsLogin(!isLogin)}>Switch method</button>
       </div>
     </form>
   );

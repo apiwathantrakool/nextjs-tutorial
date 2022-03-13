@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
-import { getUsersAPI } from '../../../utils/api-utils';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { getAllUsers } from '../../../services/firebase-db';
 import { verifyPassword } from '../../../utils/auth-utils';
 import _ from 'lodash';
 
@@ -9,9 +9,9 @@ export default NextAuth({
     jwt: true,
   },
   providers: [
-    Providers.Credentials({
+    CredentialsProvider({
       async authorize(credentials) {
-        const users = await getUsersAPI();
+        const users = await getAllUsers();
         const user = _.find(users, (obj) =>
           _.isEqual(obj.email, credentials.email)
         );

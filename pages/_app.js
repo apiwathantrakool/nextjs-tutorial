@@ -1,11 +1,14 @@
 import '../styles/globals.css';
 import { NotificationContextProvider } from '../store/notification-context';
+import { SessionProvider } from 'next-auth/react';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <NotificationContextProvider>
-      <Component {...pageProps} />
-    </NotificationContextProvider>
+    <SessionProvider session={session}>
+      <NotificationContextProvider>
+        <Component {...pageProps} />
+      </NotificationContextProvider>
+    </SessionProvider>
   );
 }
 

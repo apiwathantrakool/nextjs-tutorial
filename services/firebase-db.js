@@ -53,3 +53,16 @@ export async function signup(requestBody) {
     .then((data) => console.log(data));
   return response;
 }
+
+export async function getAllUsers() {
+  const response = await fetch(USERS_URL);
+  const data = await response.json();
+  const events = [];
+  for (const key in data) {
+    events.push({
+      id: key,
+      ...data[key],
+    });
+  }
+  return events;
+}
