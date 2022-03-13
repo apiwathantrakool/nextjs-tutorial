@@ -49,3 +49,15 @@ export async function signupAPI(email, password) {
   }).then((response) => response.json());
   return response;
 }
+
+export async function getUsersAPI() {
+  const BASE_URL = getBaseURL();
+  const response = await fetch(`${BASE_URL}/api/users`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+  return data.data;
+}
