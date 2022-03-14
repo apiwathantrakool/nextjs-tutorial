@@ -6,7 +6,6 @@ export default function Auth() {
   function handleOnLogout() {
     signOut();
   }
-
   return status === 'loading' ? (
     <div>Loading session...</div>
   ) : (

@@ -124,3 +124,7 @@ In package.json file
 # Authentication
 
 JWT (JSON Web Token) = Header + Body + Secret Key(can be expired) = Encrypt into one long string(such as base64).
+
+`useSession()` = React Hook in the NextAuth.js client to check session data and status(loading, authenticated, unauthenticated).
+
+`getSession()` = Similar return data as `useSession` but can use in any function(client or server).
