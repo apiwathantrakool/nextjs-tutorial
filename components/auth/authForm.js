@@ -1,13 +1,11 @@
 import { useState, useRef } from 'react';
 import { signupAPI } from '../../utils/api-utils';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
 
 export const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(false);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  const router = useRouter();
 
   async function submitHandler(event) {
     event.preventDefault();
@@ -22,7 +20,6 @@ export const AuthForm = () => {
       console.log('!!!!result: ', result);
       if (!result.error) {
         // set some auth state
-        router.replace('/feedback');
       }
     } else {
       await signupAPI(enteredEmail, enteredPassword).then((res) =>

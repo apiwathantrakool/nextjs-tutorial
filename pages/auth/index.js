@@ -1,9 +1,18 @@
 import { AuthForm } from '../../components/auth/authForm';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Auth() {
-  return (
+  const { data: session, status } = useSession();
+  function handleOnLogout() {
+    signOut();
+  }
+
+  return status === 'loading' ? (
+    <div>Loading session...</div>
+  ) : (
     <div>
-      <AuthForm />
+      {!session && <AuthForm />}
+      {session && <button onClick={() => handleOnLogout()}>Log out</button>}
     </div>
   );
 }
