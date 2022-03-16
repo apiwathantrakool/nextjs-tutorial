@@ -5,6 +5,7 @@ import Notification, {
   STATUS,
 } from '../../components/notification/notification';
 import { API_STATUS } from '../../constants/api-constants';
+import { getSession } from 'next-auth/react';
 
 export default function Feedback(props) {
   const { feedbacks = [] } = props;
@@ -98,11 +99,21 @@ export default function Feedback(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const feedbacks = await getFeedbacksAPI();
-  return {
-    props: {
-      feedbacks: feedbacks,
-    },
-  };
+  const session = await getSession({ req: context.req });
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    };
+  } else {
+    return {
+      props: {
+        feedbacks: feedbacks,
+      },
+    };
+  }
 }
