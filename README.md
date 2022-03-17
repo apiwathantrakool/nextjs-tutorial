@@ -129,4 +129,4 @@ JWT (JSON Web Token) = Header + Body + Secret Key(can be expired) = Encrypt into
 
 `getSession()` = Similar return data as `useSession` but can use in any function(client or server).
 
-Note, Idea for wrap multiple component auth https://github.com/nextauthjs/next-auth/issues/1210
+Note, Idea for wrap multiple components auth https://github.com/nextauthjs/next-auth/issues/1210
