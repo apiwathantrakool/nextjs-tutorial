@@ -128,3 +128,5 @@ JWT (JSON Web Token) = Header + Body + Secret Key(can be expired) = Encrypt into
 `useSession()` = React Hook in the NextAuth.js client to check session data and status(loading, authenticated, unauthenticated).
 
 `getSession()` = Similar return data as `useSession` but can use in any function(client or server).
+
+Note, Idea for wrap multiple component auth https://github.com/nextauthjs/next-auth/issues/1210
