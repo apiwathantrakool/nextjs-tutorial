@@ -14,6 +14,7 @@ export default async function handler(req, res) {
       message:
         'Invalid input - password should also be at least 7 characters long.',
     });
+    return;
   } else {
     const hashedPassword = await hashPassword(password);
     const requestBody = {
@@ -26,5 +27,6 @@ export default async function handler(req, res) {
       data: result,
       status: 201,
     });
+    return;
   }
 }

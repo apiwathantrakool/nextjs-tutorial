@@ -9,6 +9,7 @@ export default async function handler(req, res) {
   const session = getSession({ req });
   if (!session) {
     res.status(401).json({ message: 'No auth' });
+    return;
   }
   if (req.method === 'POST') {
     const { name, message } = req.body;
@@ -23,15 +24,18 @@ export default async function handler(req, res) {
       res
         .status(API_STATUS._201)
         .json({ message: 'Success!', data: result, status: API_STATUS._201 });
+      return;
     } catch (error) {
       res
         .status(API_STATUS._500)
         .json({ message: error, status: API_STATUS._500 });
+      return;
     }
   } else if (req.method === 'GET') {
     const result = await getAllFeedbacks();
     res
       .status(API_STATUS._200)
       .json({ message: 'Success!', data: result, status: API_STATUS._200 });
+    return;
   }
 }
