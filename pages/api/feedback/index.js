@@ -3,8 +3,13 @@ import {
   addNewFeedbacks,
 } from '../../../services/firebase-db';
 import { API_STATUS } from '../../../constants/api-constants';
+import { getSession } from 'next-auth/react';
 
 export default async function handler(req, res) {
+  const session = getSession({ req });
+  if (!session) {
+    res.status(401).json({ message: 'No auth' });
+  }
   if (req.method === 'POST') {
     const { name, message } = req.body;
     const id = new Date().toISOString();
